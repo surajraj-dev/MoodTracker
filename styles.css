@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: #eef2f7;
+}
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: rgb(187 229 243);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.header {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    width: 100%;
+    color: white;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.nav {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.nav button {
+    padding: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.nav button:hover {
+    background: #0056b3;
+}
+.mood-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.mood {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.2s, background 0.3s;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mood:hover {
+    transform: scale(1.2);
+    background: rgba(0, 123, 255, 0.5);
+}
+.mood.selected {
+    background: rgba(0, 123, 255, 0.8);
+}
+.date-picker {
+    margin: 20px 0;
+}
+.add-mood-btn {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #28a745, #34d058); /* Gradient Green */
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.add-mood-btn:hover {
+    background: linear-gradient(135deg, #218838, #28a745); /* Darker gradient on hover */
+    transform: scale(1.05); /* Slight scale effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.add-mood-btn:active {
+    transform: scale(0.98); /* Subtle press-down effect */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.history {
+    margin-top: 30px;
+    text-align: left;
+}
+.mood-entry {
+    background: #e3f2fd;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+.calendar {
+    display: none;
+    margin-top: 20px;
+}
+.calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.calendar th, .calendar td {
+    width: 14.2%;
+    height: 70px;
+    text-align: center;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    position: relative;
+    padding: 5px;
+    vertical-align: top;
+}
+.calendar th {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+}
+.calendar td {
+    position: relative;
+    background: #f9f9f9;
+    transition: background 0.3s;
+}
+.calendar td:hover {
+    background: #e1f5fe;
+    cursor: pointer;
+}
+.mood-icon {
+    font-size: 24px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
