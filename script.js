@@ -43,7 +43,7 @@ function addMood() {
     localStorage.setItem('moods', JSON.stringify(moods)); // Store in localStorage
 
     updateMoodHistory();
-    updateCalendar(); // Update calendar after adding mood
+    updateCalendar(currentMonth, currentYear); // Update calendar after adding mood
     selectedMood = ''; // Reset mood
 }
 
@@ -63,4 +63,80 @@ function showSection(section) {
 
 // Load stored moods and background on page load
 updateMoodHistory();
-updateCalendar();
+
+/********************* Calendar with Mood Emojis **********************************/
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
+    'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+let calendarObject = document.getElementById('calendar');
+
+var currentMonth = (new Date()).getMonth();
+var currentYear = (new Date()).getFullYear();
+
+function updateCalendar(month, year) {
+    calendarObject.innerHTML = `<h2>${months[month]} ${year}</h2>
+                                <button onclick="back()">Previous</button>
+                                <button onclick="next()">Next</button>`;
+
+    var firstDay = new Date(year, month, 1).getDay();
+    var numberOfDays = 32 - new Date(year, month, 32).getDate();
+
+    let table = document.createElement('table');
+    let thead = document.createElement('thead');
+    let theadrow = document.createElement('tr');
+
+    days.forEach(day => {
+        let th = document.createElement('th');
+        th.textContent = day;
+        theadrow.append(th);
+    });
+
+    thead.append(theadrow);
+    table.append(thead);
+
+    let tbody = document.createElement('tbody');
+    let dateCounter = 1;
+
+    for (let wks = 0; wks < 6; wks++) {
+        let tr = document.createElement('tr');
+        for (let wds = 0; wds < 7; wds++) {
+            let td = document.createElement('td');
+
+            if (wks === 0 && wds < firstDay) {
+                td.textContent = ''; // Empty cell before first day
+            } else if (dateCounter <= numberOfDays) {
+                let formattedDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${dateCounter.toString().padStart(2, '0')}`;
+                let moodEmoji = moods[formattedDate] || '';
+                td.innerHTML = `${dateCounter} ${moodEmoji}`;
+                dateCounter++;
+            }
+
+            tr.append(td);
+        }
+        tbody.append(tr);
+    }
+
+    table.append(tbody);
+    calendarObject.append(table);
+}
+
+function next() {
+    currentMonth++;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+    updateCalendar(currentMonth, currentYear);
+}
+
+function back() {
+    currentMonth--;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    }
+    updateCalendar(currentMonth, currentYear);
+}
+
+updateCalendar(currentMonth, currentYear);
