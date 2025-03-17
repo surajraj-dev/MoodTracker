@@ -38,7 +38,6 @@ function addMood() {
     }
     const dateInput = document.getElementById('mood-date').value;
     const today = dateInput || new Date().toISOString().split('T')[0];
-
     moods[today] = selectedMood; // Store in memory
     localStorage.setItem('moods', JSON.stringify(moods)); // Store in localStorage
 
