@@ -1,10 +1,12 @@
-
-
-// Safely parse localStorage data
+// Load stored moods from localStorage
 let selectedMood = '';
+let moods = JSON.parse(localStorage.getItem('moods')) || {};
 
-let moods = localStorage.getItem('moods');
-moods = moods ? JSON.parse(moods) : {}; // Only parse if there's valid data
+// Load background color from localStorage on page load
+const savedBackground = JSON.parse(localStorage.getItem('background'));
+if (savedBackground) {
+    document.body.style.backgroundColor = savedBackground;
+}
 
 // Function to select a mood
 function selectMood(emoji) {
@@ -12,8 +14,8 @@ function selectMood(emoji) {
     changeBackground(emoji);
 }
 
+// Function to change background color and store it in localStorage
 function changeBackground(emoji) {
-    const body = document.body;
     const colors = {
         '😊': '#ffeb3b',  // Yellow
         '😢': '#90caf9',  // Light Blue
@@ -21,9 +23,13 @@ function changeBackground(emoji) {
         '🤩': '#ff9800',  // Orange
         '😡': '#f44336'   // Red
     };
-    body.style.backgroundColor = colors[emoji] || '#ffffff'; // Default to white if no match
-}
 
+    const selectedColor = colors[emoji] || '#ffffff';
+    document.body.style.backgroundColor = selectedColor;
+
+    // Store the selected background color in localStorage
+    localStorage.setItem('background', JSON.stringify(selectedColor));
+}
 
 function addMood() {
     if (!selectedMood) {
@@ -49,14 +55,12 @@ function updateMoodHistory() {
     }
 }
 
-
 // Function to show sections
 function showSection(section) {
     document.getElementById('tracker').style.display = section === 'tracker' ? 'block' : 'none';
     document.getElementById('calendar').style.display = section === 'calendar' ? 'block' : 'none';
 }
 
-// Load stored moods on page load
+// Load stored moods and background on page load
 updateMoodHistory();
 updateCalendar();
-
