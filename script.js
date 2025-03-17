@@ -1,3 +1,11 @@
+
+
+// Safely parse localStorage data
+let selectedMood = '';
+
+let moods = localStorage.getItem('moods');
+moods = moods ? JSON.parse(moods) : {}; // Only parse if there's valid data
+
 // Function to select a mood
 function selectMood(emoji) {
     selectedMood = emoji;
@@ -13,11 +21,9 @@ function changeBackground(emoji) {
         '🤩': '#ff9800',  // Orange
         '😡': '#f44336'   // Red
     };
-    body.style.backgroundColor = colors[emoji]; // Default color
+    body.style.backgroundColor = colors[emoji] || '#ffffff'; // Default to white if no match
 }
 
-const moods = {};
-let selectedMood = '';
 
 function addMood() {
     if (!selectedMood) {
@@ -28,6 +34,8 @@ function addMood() {
     const today = dateInput || new Date().toISOString().split('T')[0];
 
     moods[today] = selectedMood; // Store in memory
+    localStorage.setItem('moods', JSON.stringify(moods)); // Store in localStorage
+
     updateMoodHistory();
     updateCalendar(); // Update calendar after adding mood
     selectedMood = ''; // Reset mood
@@ -37,11 +45,9 @@ function updateMoodHistory() {
     const historyDiv = document.getElementById('mood-history');
     historyDiv.innerHTML = '';
     for (const [date, mood] of Object.entries(moods)) {
-        historyDiv.innerHTML += `<div class="mood-entry">${date} - ${mood}</div>`;
+        historyDiv.innerHTML += `<div class="mood-entry">${date} - ${mood}</div> `;
     }
 }
-
-// Function  calendar view
 
 
 // Function to show sections
@@ -50,4 +56,7 @@ function showSection(section) {
     document.getElementById('calendar').style.display = section === 'calendar' ? 'block' : 'none';
 }
 
+// Load stored moods on page load
 updateMoodHistory();
+updateCalendar();
+

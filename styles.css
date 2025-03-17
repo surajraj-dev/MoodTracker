@@ -104,14 +104,9 @@ body {
     margin: 5px 0;
     border-radius: 5px;
 }
-
-.mood-icon {
-    font-size: 24px;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.calendar {
+    display: none;
+    margin-top: 20px;
 }
 
 
