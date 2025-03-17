@@ -104,41 +104,7 @@ body {
     margin: 5px 0;
     border-radius: 5px;
 }
-.calendar {
-    display: none;
-    margin-top: 20px;
-}
-.calendar table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-.calendar th, .calendar td {
-    width: 14.2%;
-    height: 70px;
-    text-align: center;
-    border: 1px solid #ccc;
-    font-size: 18px;
-    position: relative;
-    padding: 5px;
-    vertical-align: top;
-}
-.calendar th {
-    background: #007bff;
-    color: white;
-    padding: 10px;
-}
-.calendar td {
-    position: relative;
-    background: #f9f9f9;
-    transition: background 0.3s;
-}
-.calendar td:hover {
-    background: #e1f5fe;
-    cursor: pointer;
-}
+
 .mood-icon {
     font-size: 24px;
     display: block;
@@ -147,3 +113,5 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
