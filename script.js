@@ -19,7 +19,7 @@ function changeBackground(emoji) {
     const colors = {
         '😊': '#ffeb3b',  // Yellow
         '😢': '#90caf9',  // Light Blue
-        '😐': '#bdbdbd',  // Gray
+        '😔': '#bdbdbd',  // Gray
         '🤩': '#ff9800',  // Orange
         '😡': '#f44336'   // Red
     };

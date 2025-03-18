@@ -5,7 +5,7 @@ This application allows users to **track their daily moods** and **view them on 
 Moods are stored in `localStorage`, so they persist even after refreshing the page.
 
 ### 🔹 Key Features:
-- **Select a Mood** using emojis (😊 😢 😐 🤩 😡)
+- **Select a Mood** using emojis (😊 😢 😔 🤩 😡)
 - **Automatically change background color** based on mood
 - **Store moods with a date** and display them on the calendar
 - **Navigate through months** using `Next` and `Previous` buttons
